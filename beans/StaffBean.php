@@ -1,9 +1,7 @@
 <?php
     declare(strict_types = 1);
 
-    namespace grs\beans;
     require 'UserAbsBean.php';
-    use grs\beans\User as User;
 
     class StaffBean extends User
     {

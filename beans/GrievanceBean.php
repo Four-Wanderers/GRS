@@ -1,8 +1,6 @@
 <?php
     declare(strict_types = 1);
 
-    namespace grs\beans;
-
     class GrievanceBean
     {
         private $ticket_id;

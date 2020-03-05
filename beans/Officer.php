@@ -1,12 +1,11 @@
 <?php
     declare(strict_types = 1);
-
+    
     require 'UserAbsBean.php';
-
-    class StudentBean extends User
+    class Officer extends User
     {
         private $dept_name;
-    
+
         function getDept_name():string
         {
             return $this->dept_name;

@@ -1,14 +1,10 @@
 <?php
-    namespace grs\utils;
-    
-    // require '..\\beans\\AdminHodBean.php';
-    use grs\beans\AdminHodBean as AdminHodBean;
     
     abstract class AdminDAO
     {
-        abstract function getProfile():AdminHodBean;
-        
+        // abstract function getProfile():array;
+        abstract function removeHOD(string $uname):bool;
         // abstract public function addDep($dept_name):bool;
-        abstract public function removeDept($dept_name):bool;
+        
     }
 ?>
