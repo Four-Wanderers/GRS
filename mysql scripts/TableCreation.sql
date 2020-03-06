@@ -1,5 +1,11 @@
 DROP DATABASE IF EXISTS kmit;
 
+
+-- creating a user for easy portability of code
+
+create user 'admin'@'localhost' identified by 'pass@123';
+grant all privileges on kmit.* to 'admin'@'localhost';
+
 -- Creating Database with college name
 create database kmit;
 use kmit;
