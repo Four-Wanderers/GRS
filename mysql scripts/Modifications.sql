@@ -91,7 +91,7 @@ end $$
 Delimiter ;
 
 DELIMITER $$
-create trigger after_delete_staff after delete on officer
+create trigger after_delete_staff after delete on staff
 FOR EACH ROW
 begin
 	update members_log set status='inactive' where id=old.id;
