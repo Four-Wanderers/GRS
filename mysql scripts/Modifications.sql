@@ -114,3 +114,15 @@ begin
 end $$
 Delimiter ;
 
+alter table staff
+modify mgr_id int; -- to remove not null constraint
+
+alter table staff
+add column dept_id int, -- this would be required when HOD is removed
+add constraint fk_dept_id_staff foreign key(dept_id) references Department(dept_id) on delete cascade;
+
+alter table staff
+drop foreign key fk_mgr_id;
+
+alter table staff
+add constraint fk_mgr_id foreign key(mgr_id) references officer(id) on delete set null;
