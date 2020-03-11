@@ -1,6 +1,6 @@
 <?php
-    include "DBConnection.php";
     include "DeptDAO.php";
+    require_once "DBConnection.php";
     
     class DeptDAOImpl extends DeptDAO
     {
@@ -8,7 +8,7 @@
         {
             $conn = getConn();
             
-            $sql = "select t1.dept_name 'dept_name',t2.username 'hod_name' from ".DBConstants::$DEPT_TABLE." t1 LEFT OUTER JOIN ".DBConstants::$ADMINHOD_TABLE." t2 on t1.dept_id = t2.dept_id";
+            $sql = "select t1.dept_id 'dept_id', t1.dept_name 'dept_name',t2.username 'hod_name' from ".DBConstants::$DEPT_TABLE." t1 LEFT OUTER JOIN ".DBConstants::$OFFICER_TABLE." t2 on t1.dept_id = t2.dept_id";
             
             $result = $conn->query($sql);
 

@@ -1,6 +1,6 @@
 <?php
     require "AdminDAO.php";
-    require "DBConnection.php";
+    require_once "DBConnection.php";
     
     class AdminDAOImpl extends AdminDAO
     {
@@ -26,10 +26,36 @@
             $conn->close();
             return false;   
         }
-    }
+        public function getGrievances($dept_id, $status): array
+        {
+            $conn = getConn();
+            // var_dump($status);
+            $temp = join("','",$status);
+            $status_query = ((count($status) != 0) ? "where ct.status in ('$temp')" : "");
+            // $status_query = "";
 
-    if((new AdminDAOImpl())->removeHOD("CSE HOD"))
-        ECHO "removed";
-    else
-        echo "failure";
+            $custom_table = "(select 
+                    g.ticket_id 'ticket_id',
+                    g.title 'title',
+                    d.dept_name 'dept_name',
+                    o.username 'handler_name',
+                    g.year 'year',
+                    if(g.time_assigned is null, 'Unassigned', IF(g.time_completed is null, 'InProgress', 'Completed')) 'status'
+                    from ".DBConstants::$DEPT_TABLE." d, ".DBConstants::$GTICKET_TABLE." g, ".DBConstants::$OFFICER_TABLE." o 
+                    where d.dept_id = g.dept_id and g.handler_id = o.id and d.dept_id = '$dept_id')";
+            $sql = "select * from ".$custom_table." ct ".$status_query.";";
+            // print $sql;
+            $result = $conn->query($sql);
+
+            //returns array of rows if they exist.
+            if($result->num_rows > 0)
+            {
+                return $result->fetch_all(MYSQLI_ASSOC);  
+            }
+            else
+            {
+                return [];
+            }
+        }
+    }
 ?>
