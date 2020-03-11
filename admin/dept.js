@@ -22,11 +22,11 @@ var callback = (url,func)=>{
 };
 
 function removeHOD(xhttp){
-    if(xhttp.responseText === "true")
+    if(xhttp.responseText)
         callback(CONTROLLER_LINK+"departments",loadTable);
     else
     {
-        //failed to send an email to HOD
+        console.log('failed');
     }
 }
 
@@ -52,12 +52,12 @@ function loadTable(xhttp)
         tr.appendChild(th);
         
         table.appendChild(tr);
-        console.log(table.innerHTML);
+        // console.log(table.innerHTML);
     };
     
     var makeTbody = (dept, table)=>{
         //dept name, should be a link which directs to the page whick would be displaying dept specific details
-        console.log(dept);
+        // console.log(dept);
         
         tr = document.createElement("tr");
         td = document.createElement("td");
@@ -96,7 +96,7 @@ function loadTable(xhttp)
         button.setAttribute("type","button");
         button.innerHTML = "RemoveHOD";
         url = CONTROLLER_LINK+"removeHOD&uname="+dept.hod_name;
-        button.setAttribute("onClick","controller("+url+",removeHOD)");
+        button.setAttribute("onClick","callback('"+url+"',removeHOD)");
         td.appendChild(button);
 
         tr.appendChild(td);
@@ -105,7 +105,9 @@ function loadTable(xhttp)
 
     data = JSON.parse(xhttp.responseText); //array of {dept_id: -, dept_name:"",hod_name:""}
     departments = document.getElementById("departments");
-    departments.removeChild(departments.firstChild); //delete previous table
+    while(departments.firstChild)
+        departments.removeChild(departments.firstChild);
+    // departments.removeChild(departments.firstChild); //delete previous table
     if(data.length === 0)
     {
         departments.innerHTML = "No departments ";
