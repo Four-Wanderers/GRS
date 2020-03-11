@@ -12,6 +12,7 @@
         public static $STUDENT_TABLE = "STUDENT";
         public static $GTICKET_TABLE = "GTICKET";
         public static $REDIRECT_LOG_TABLE = "REDIRECT_LOG";
+        public static $MEMBERS_LOG_TABLE = "MEMBERS_LOG";
         public static $NO_DATA_FOUND_MESG = "No data found from the table.";
     }
 ?>

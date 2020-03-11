@@ -3,7 +3,7 @@
 
     class DBConnection
     {
-        public $conn ;
+        private $conn ;
         
         public function __construct()
         {

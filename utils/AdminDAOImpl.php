@@ -64,7 +64,7 @@
             $result = $conn->query($sql);
             $conn->close();
             
-            return result;
+            return $result;
         }
 
         public function insertStudentDetails(array $rollnos,array $depts,array $emails):array
