@@ -98,5 +98,28 @@
             return $info;
         }
         
+        public function assignHOD(string $uname,string $email, string $pass,int $dept_name):bool
+        {
+            $conn = (new DBConnection())->getConn();
+            $dept_id = DeptDAOImpl::getDept_id($dept_name);
+            $sql = "insert into ".DBConstants::$OFFICER_TABLE."(username,email,password,dept_id) values('$uname','$email','$pass',$dept_id);";
+            $ack = $conn->query($sql);
+            if($ack)
+            {
+                //get the id of this hod ,since we have to assign him the grievances of prev HOD
+                $result = "select id from ".DBConstants::$OFFICER_TABLE." where dept_id=$dept_id;";
+                
+                if($row = $result->fetch_assoc())
+                {
+                    $sql = "update ".DBConstants::$GTICKET_TABLE." set handler_id=".$row['id'].", time_assigned=curr_timestamp() where handler_id is null";
+                    $conn->query($sql);
+                    $mail = new Mailing();
+                    $body = MailingConstants::assignHODMsg($dept_name,$uname,$pass);
+                    $ack = $mail->sendMail($email,MailingConstants::$ASSIGN_HOD_SUBJECT,$body);
+                }
+            }
+            $conn->close();
+            return $ack;
+        }  
     }
 ?>
