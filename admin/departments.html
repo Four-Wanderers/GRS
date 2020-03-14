@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Departments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="dept.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body onload="setup('load')">
+
+<!--Add department form-->
+<!-- Button trigger modal -->
+<button type="button"  class="btn btn-primary launchConfirm pull-right"  data-toggle="modal" data-target="#exampleModalCenter"style="right:0;border-radius: 50%; margin-top:15%; margin-right:40px;">
+    <i style="font-size:40px" class="fa">&#xf067;</i></i>
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Department</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="dept_name" placeholder="Add Department Name" ><br>
+          <span id="addDept_ack"></span>
+        </div>
+        <div class="modal-footer">
+          <!-- data-dismiss="modal" -->
+          <button type="button" class="btn  btn-primary text-center" id="add_dept_btn" onclick="setup('add_dept')">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for assign HOD -->
+  <div class="modal fade" id="assignhod" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Assign HOD</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class = "modal-body">
+            <form id = "assign_hod_form"  method="post">
+              <input type = "text" class="form-control" name="email" id="hod_email" placeholder="Enter HOD email">
+              <input type = "text" class="form-control" name="username" id="hod_username" placeholder="Enter HOD username">
+              <input type = "hidden" id="hod_dept_name">
+              <span id = "assignhod_ack"></span>
+            </form>
+          </div>
+          <div class = "modal-footer">
+            <button type = "button" class="btn  btn-primary text-center" onclick="setup('assign_hod')">Assign&mail</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="continer-fluid">
+    <div class="row">
+     <div class="col-sm-2"></div>
+     <div class="col-sm-8">
+      <h1>Your Departments</h1><br>
+      <table id="depTable" class="table  table-striped">
+      </table>
+     </div>
+     <div class="col-sm-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2"></div>
+    <!-- style the content -->
+    <div class="col-sm-8" id="addcustom"> 
+        <!--Give you custom preview-->
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+</div>
+
+</body>
+</html>
