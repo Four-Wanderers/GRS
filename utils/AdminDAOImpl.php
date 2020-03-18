@@ -59,7 +59,7 @@
         public function addDept($dept_name): bool
         {
             $conn = (new DBConnection())->getConn();
-            $sql = "Insert into ".DBConstants::$DEPT_TABLE."(dept_name) values($dept_name)";
+            $sql = "Insert into ".DBConstants::$DEPT_TABLE."(dept_name) values('$dept_name')";
             
             $result = $conn->query($sql);
             $conn->close();
@@ -98,7 +98,7 @@
             return $info;
         }
         
-        public function assignHOD(string $uname,string $email, string $pass,int $dept_name):bool
+        public function assignHOD(string $uname,string $email, string $pass,string $dept_name):bool
         {
             $conn = (new DBConnection())->getConn();
             $dept_id = DeptDAOImpl::getDept_id($dept_name);
@@ -107,11 +107,11 @@
             if($ack)
             {
                 //get the id of this hod ,since we have to assign him the grievances of prev HOD
-                $result = "select id from ".DBConstants::$OFFICER_TABLE." where dept_id=$dept_id;";
-                
+                $sql = "select id from ".DBConstants::$OFFICER_TABLE." where dept_id=$dept_id;";
+                $result = $conn->query($sql);
                 if($row = $result->fetch_assoc())
                 {
-                    $sql = "update ".DBConstants::$GTICKET_TABLE." set handler_id=".$row['id'].", time_assigned=curr_timestamp() where handler_id is null";
+                    $sql = "update ".DBConstants::$GTICKET_TABLE." set handler_id=".$row['id'].", time_assigned=current_timestamp() where handler_id is null and dept_id=$dept_id";
                     $conn->query($sql);
                     $mail = new Mailing();
                     $body = MailingConstants::assignHODMsg($dept_name,$uname,$pass);
