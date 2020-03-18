@@ -1,6 +1,4 @@
 var CONTROLLER_LINK = "controller.php?action=";
-var DEPT_DETAILS_LINK = "viewDeptDetails.php?dept_name=";
-var ASSIGN_HOD_LINK = "assignHOD.php";
 
 /*
 actions for
@@ -46,7 +44,6 @@ function setup(type)
 function assignHOD(xhttp)
 {
     span = document.getElementById('assignhod_ack');
-    console.log(xhttp.responseText);
     if(xhttp.responseText)
     {
         // btn = document.getElementById("add_dept_btn");  
@@ -118,17 +115,15 @@ function loadTable(xhttp)
         tr.appendChild(th);
         
         table.appendChild(tr);
-        // console.log(table.innerHTML);
     };
     
     var makeTbody = (dept, table)=>{
         //dept name, should be a link which directs to the page whick would be displaying dept specific details
-        // console.log(dept);
         
         tr = document.createElement("tr");
         td = document.createElement("td");
         a = document.createElement("a");
-        a.setAttribute("href",DEPT_DETAILS_LINK+dept.dept_name);
+        // a.setAttribute("href",DEPT_DETAILS_LINK+dept.dept_name);
         a.innerHTML = dept.dept_name;
         td.appendChild(a);
         tr.appendChild(td);
@@ -136,7 +131,6 @@ function loadTable(xhttp)
         td = document.createElement("td");
         if(dept.hod_name == null)
         {
-            
             input = document.createElement("input");
             input.setAttribute("type","submit");
             input.setAttribute("value","Assign");
@@ -185,5 +179,5 @@ function loadTable(xhttp)
             makeTbody(dept, table);
         }
     }
-
+    
 }
