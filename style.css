@@ -1,0 +1,99 @@
+.fa {
+    padding: 10px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+  }
+  .fa:hover{
+    text-decoration: none;
+  }
+  .fa-instagram:hover {
+    background: #c0094f;
+    color: white;
+  }
+  .fa-instagram{
+    background: #ea4c89;
+    color: white;
+  }
+          .fa-facebook:hover {
+    background: rgb(5, 44, 129);
+    color: white;
+  }
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  .fa-twitter:hover {
+    background: rgb(64, 142, 201);
+    color: white;
+  }
+  
+  .fa-google {
+    background: #dd4b39;
+    color: white;
+  }
+  .fa-google:hover {
+    background: #c03826;
+    color: white;
+  }
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  .fa-linkedin:hover {
+    background: #016b9c;
+    color: white;
+  }
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    background-color: #000033;
+    
+  }
+  .dropdown-menu .dropdown-item{
+    color: white;
+  }
+          #jt
+          {
+              background: url("https://www.idp.com/medias/ban3.jpg?context=bWFzdGVyfGltYWdlc3w3NTQzN3xpbWFnZS9qcGVnfGltYWdlcy9oMWEvaDBkLzkwMzI1NDcxNzIzODIuanBnfGMzOTY3MGE2MzgxZWMyYWI1NWVlNzZhOTVjNWM1NDQ5NDE3MjI0MTYzNzg2YjBkZDIwYmExOGM3ZGYyOTE5NjA");
+              height:500px;
+              background-repeat: no-repeat;
+              background-size: cover;
+              z-index: -1000;
+          }
+          .navbar
+          {
+              background-color:#000033;
+              
+          }
+          .navbar .nav-link
+          {
+              color: white;
+              padding-top: 10px;
+              margin-right: 50px;
+          }
+          #jtext
+          {
+              font-size: 70px;
+          }
+          .navbar-toggler-icon
+          {
+              background-color:white;
+              color:black;
+              border-color:white;
+          }
+          #im{
+              border-radius: 50%;
+              height: 100px;
+          }
+          .nav-link .active
+          {
+            background-color: aliceblue;
+          }
+
+          

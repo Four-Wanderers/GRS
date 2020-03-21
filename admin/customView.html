@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Custom View</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="CustomViewGrev.js"></script>
+        <style>
+            hr{
+                border: 0;
+                height: 0;
+                margin-top: 0.51px;
+                margin-bottom: 10px;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body onload="callback('controller.php?action=departments', getDepartments)">
+        <div class="container-fluid">
+            <br><br>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <h2>Custom Grievances</h2>
+                    <br>
+                    <div class="filters">
+                        <button class="btn btn-primary" data-target="#filter-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="my-collapse" style="height: 40px;">
+                            <span class="glyphicon glyphicon-tasks" style="margin-right:10px; margin-top: 5px;"></span>Filter
+                        </button>
+                        <div id="filter-collapse" class="collapse" style="margin-top: 10px; margin-bottom: -10px;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6>Departments</h6><hr>
+                                    <div id="dept_radio">
+                                        <form id="c_view_radio" style="margin-left: 20px;"></form>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h6>Status</h6><hr>
+                                    <div id="status_checkbox">
+                                        <form id="c_view_checkbox">
+                                            <input type="checkbox" id="Unassigned" name="status" value="Unassigned" checked>
+                                            <label for="Unassigned" class="form-check-label">Unassigned</label><br>
+
+                                            <input type="checkbox" id="InProgress" name="status" value="InProgress" checked>
+                                            <label for="InProgress" class="form-check-label">In Progress</label><br>
+                                            
+                                            <input type="checkbox" id="Redirected" name="status" value="Redirected" checked>
+                                            <label for="Redirected" class="form-check-label">Redirected</label><br>
+                                            
+                                            <input type="checkbox" id="Completed" name="status" value="Completed" checked>
+                                            <label for="Completed" class="form-check-label">Completed</label><br>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row"  style="float: right; margin-bottom: 20px">
+                                <button onclick="getCheckedBox()" data-target="#filter-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="my-collapse" class="btn btn-primary" style="font-size: small; margin-right: 15px;">Apply Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="grievances" class="table-responsive">
+                        <h3 id = "nogrievance" style="display: none;">No Grievances</h3>
+                        <table id = "customtable" class="table table-striped">
+                            <thead class="thead-dark" align="center">
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Title</th>
+                                    <th>Department Name</th>
+                                    <th>Handler Name</th>
+                                    <th>Year</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+    </body>
+</html>
