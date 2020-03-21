@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <Script src="stats_grievances.js"></Script>
+  <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <style>
+      #count1,#count2,#count3,#count4
+      {
+          font-weight: bold;
+          color:darkblue;
+      }
+      tr:nth-child(odd)
+      {
+        background-color:lightgray;
+      }
+  </style>
+</head>
+<body onload="callback()">
+    <div class="container-fluid" id="content-body">
+        <div class="row">
+            <div class="col-sm-3">
+              <div class="card" >
+                <div class="card-body">
+                  <h3 class="card-title text-center">Solved <br>Grievances</h3>
+                  <p class="card-text text-center" id="count1"></p>
+                  <div class="progress">
+                    <div class="progress-bar bg-success progress-bar-striped" id="stats1"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card" >
+                  <div class="card-body">
+                    <h3 class="card-title text-center">In Progress Grievances</h3>
+                    <p class="card-text text-center" id="count2"></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-info progress-bar-striped" id="stats2"></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title text-center">Unassigned Grievances</h3>
+                    <p class="card-text text-center" id="count3"></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger progress-bar-striped"  id="stats3"></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title text-center">Redirected Grievances</h3>
+                    <p class="card-text text-center" id="count4"></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning progress-bar-striped"  id="stats4"></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+       </div>
+       
+ <br><br>
+ <div class="container-fluid">
+       <div class="row">
+
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table id="AdminGrievances" class="table table-striped text-center">
+              <thead class="thead-dark">
+              <th>TICKET_ID</th>
+              <th>TITLE</th>
+              <th>DEPT_NAME</th>
+              <th>STATUS</th>
+              <th>YEAR</th>
+              </thead>
+            </table>
+              
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+       </div>
+      
+</body>
+</html>

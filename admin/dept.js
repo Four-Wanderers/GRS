@@ -3,7 +3,9 @@ var CONTROLLER_LINK = "controller.php?action=";
 /*
 actions for
 load table = "departments"
-removeHOD = "removeHOD"
+remove HOD = "removeHOD"
+assign hod = "assignhod"
+add Dept = "add_dept"
 */
 
 var callback = (url,func)=>{
@@ -25,7 +27,7 @@ function setup(type)
     {
         case 'add_dept':
             dept_name = document.getElementById('dept_name').value;
-            url = CONTROLLER_LINK+'addDept&dept_name='+dept_name;
+            url = CONTROLLER_LINK+'add_dept&dept_name='+dept_name;
             callback(url,addDept);
             break;
         case 'assign_hod':
@@ -96,6 +98,7 @@ function loadTable(xhttp)
     var makeEle = (type,id)=>{
         e = document.createElement(type);
         e.setAttribute('id',id);
+        return e;
     };
 
     var makeThead = (table)=>{

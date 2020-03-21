@@ -6,6 +6,7 @@
         public static $ALIAS_NAME = "GRS.com";
         public static $REMOVE_HOD_SUBJECT = "Thank you for your contribution.";
         public static $REMOVE_HOD_MSG = "Thank You for all your services. Your access to the portal has now been disabled";
+        public static $ASSIGN_HOD_SUBJECT = "Welcome";
         
         public static function assignHODMsg(string $dept_name,string $username,string $password):string
         {
