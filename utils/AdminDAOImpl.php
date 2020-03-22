@@ -141,8 +141,8 @@ class AdminDAOImpl extends AdminDAO
         $conn = (new DBConnection())->getConn();
         $admin_id=$_SESSION['id'];
         $sql = "select ticket_id,title,dept_name,username,year,
-        if(g.ticket_id in(select r.ticket_id from redirect_log r),'redirect',
-        if(g.time_assigned is null,'unassigned',if(g.time_completed is null,'InProgess','Completed'))) 'status'
+        if(g.ticket_id in(select r.ticket_id from redirect_log r),'redirected',
+        if(g.time_assigned is null,'unassigned',if(g.time_completed is null,'InProgress','Completed'))) 'status'
         from ".DBConstants::$MEMBERS_LOG_TABLE." m,".DBConstants::$DEPT_TABLE." d,"
         .DBConstants::$GTICKET_TABLE." g where m.id=g.handler_id and 
         d.dept_id=g.dept_id and g.handler_id=$admin_id";
@@ -165,25 +165,19 @@ class AdminDAOImpl extends AdminDAO
         $admin_id=$_SESSION['id'];
         $conn = (new DBConnection())->getConn();
         $sql = "select count(*) 'count',
-        if(g.ticket_id in(select r.ticket_id from redirect_log r),'redirect',
-        if(g.time_assigned is null,'unassigned',if(g.time_completed is null,'InProgess','Completed'))) 'status'
-        from ".DBConstants::$GTICKET_TABLE." g where g.handler_id=$admin_id 
-        group by status";
+        if(g.ticket_id in(select r.ticket_id from redirect_log r),'redirected',
+        if(g.time_assigned is null,'unassigned',if(g.time_completed is null,'InProgress','Completed'))) 'status'
+        from ".DBConstants::$GTICKET_TABLE." g group by status";
         
         $result = $conn->query($sql);
+        $conn->close();
 
         if($result->num_rows > 0)
         {
-            $conn = (new DBConnection())->getConn();
-            $sql = "Insert into ".DBConstants::$DEPT_TABLE."(dept_name) values('$dept_name')";
-            
-            $result = $conn->query($sql);
-            $conn->close();
             return $result->fetch_all(MYSQLI_ASSOC); 
         }
         else
         {
-            $conn->close();
             return [];
         }
     }
