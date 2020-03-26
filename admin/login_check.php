@@ -1,5 +1,4 @@
 <?php
-    
     require_once("..\\utils\\DBConnection.php");
     
     $umail = $_POST["umail"];
@@ -19,9 +18,8 @@
             $location .= "\\grs\\admin\\Dashboard.php";
         }
         else{
-            
             $_SESSION["dept_id"] = $row["dept_id"];
-            $location .= "\\grs\\admin\\Dashboard.php";
+            $location .= "\\grs\\HOD\\Dashboard.php";
         }
         // redirect to the desired page
         header($location);

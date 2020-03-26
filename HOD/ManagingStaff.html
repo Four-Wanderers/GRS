@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manage-Staff</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="ManagingStaff.js"></script>
+</head>
+<br><br>
+<body onload="callback('controller.php?action=getStaffs',loadTable)">
+
+    <div class="container-fluid">
+        <div class="row">
+ 
+         <div class="col-md-3"></div>
+         <div class="col-md-6">
+             <table id="manage-staff" class="table table-striped text-center">
+               <thead class="thead-dark">
+               <th>STAFF-ID</th>
+               <th>STAFF-NAME</th>
+               <th>YEAR</th>
+               <th>ACTION</th>
+               </thead>
+             </table>
+          <div id="msg"></div>
+          <style>
+            #msg
+            {
+               font-size:40px;
+               font-weight: 500;
+               font:bolder;
+            }
+          </style>
+          <br><br>
+          <button type="button" class="btn btn-primary btn-nm" data-toggle="modal" data-target="#ModalLoginForm">
+            AddStaff
+        </button>
+        <div id="ModalLoginForm" class="modal fade">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title">Add-Staff-Details</h1>
+                  </div>
+                  <div class="modal-body">
+                      <form role="form" >
+                          <input type="hidden" name="_token" value="">
+                          <div class="form-group">
+                              <label class="control-label">E-Mail Address</label>
+                              <div>
+                                  <input type="email" class="form-control input-nm" name="email" value="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label">Year</label>
+                              <div>
+                                  <input type="text"" class="form-control input-nm" name="year">
+                              </div>
+                          </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-success" onclick="passStaffDetails()">submit</button>
+                        </div>
+         </div>
+         <div class="col-md-2"></div>
+       
+         </div>
+        </div>
+
+</body>
+</html>
