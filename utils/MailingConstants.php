@@ -1,8 +1,8 @@
 <?php
     class MailingConstants
     {
-        public static $FROM_ADDRESS = "mawaris99@gmail.com";
-        public static $PASSWORD = "waris@199";
+        public static $FROM_ADDRESS = "bullshit@gmail.com";
+        public static $PASSWORD = "maakalaadlabigadgaya";
         public static $ASSIGN_HOD_SUBJECT = "Welcome";
         public static $ALIAS_NAME = "GRS.com";
         public static $REMOVE_HOD_SUBJECT = "Thank you for your contribution.";
