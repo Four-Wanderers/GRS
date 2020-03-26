@@ -39,10 +39,7 @@ function getStaff(xhttp){
     {
         while(form.firstChild)
             form.removeChild(form.firstChild);
-        
-        createRbtn('all','All',form);
-        form.appendChild(document.createElement("br"));
-        
+    
         for(staff of data){
             createRbtn(staff.id,staff.username,form);
             form.appendChild(document.createElement("br"));
@@ -63,6 +60,9 @@ function getCheckedBox(){
         checks.push(ch.value);
     
     status = checks.join("_");
+
+    callback(CONTROLLER_LINK+`customstats&staff_id=${staff_id}`,makeStats);
+
     if(status)
     {
         var url = CONTROLLER_LINK + "grievance&staff_id="+staff_id+"&status="+status;
@@ -72,14 +72,29 @@ function getCheckedBox(){
     {
         $('#customtable').hide(500);
         $('#nogrievance').show(500).text("Select atleast one status type");
-        // grievance = document.getElementById("nogrievance");
-        // document.getElementById("customtable").style.display = "none";
-        // grievance.innerHTML = "Select atleast one status type";
-        // grievance.style.display = "block";
     }
 }
 
-
+function makeStats(xhttp)
+{
+    info = JSON.parse(xhttp.responseText);
+    $('#getStatsBtn').show(500);
+    $('#inprogress_count').text("0");
+    $('#completed_count').text("0");
+    $("#inprogress_percent").css({"width":"0%"}).text(`0%`);
+    $("#completed_percent").css({"width":"0%"}).text(`0%`);
+    var tot = 0;
+    for(stats of info)
+    {
+        $(`#${stats.status}_count`).text(`${stats.count}`);
+        tot += stats.count;
+    }
+    for(stats of info)
+    {
+        percent = ((100*stats.count)/tot).toFixed(2);
+        $(`#${stats.status}_percent`).css({"width":`${percent}%`}).text(`${percent}%`);
+    }
+}
 
 function getGrievances(xhttp)
 {
@@ -163,4 +178,23 @@ function getGrievances(xhttp)
         // table.style.display = "block";
         // grievance.style.display = "none";
     }
+}
+
+var count=0;
+function showStats()
+{
+    $(document).ready(function(){
+          $(".card").fadeToggle();
+        //   $("#statCard2").fadeToggle();
+          $("#grievances").fadeToggle();
+      });
+      count = (count+1)%2;
+      if(count)
+      {
+        document.getElementById("getStatsBtn").innerHTML="Get Table";
+      }
+      else
+      {
+        document.getElementById("getStatsBtn").innerHTML="Get Statistics";  
+      }
 }

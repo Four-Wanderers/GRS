@@ -9,5 +9,6 @@
         abstract function getUnassignedGriev($deptid):array; // {ticketid, title, year [,status..]}
         abstract function assignGrievance($ticket_id, $handler_id):bool;
         abstract function getGrievances(int $dept_id,string $staff_id,array $status):array;
+        abstract function getStats(int $dept_id, string $staff_id='all'):array;
     }
 ?>

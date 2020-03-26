@@ -1,9 +1,9 @@
-function callback()
-{    
-    getAllGrievances("controller.php?action=allgrievaces",loadtable);
+function setup(){
+    callback('controller.php?action=allgrievaces', loadtable);
+    callback('controller.php?action=totalstats', setStats);
 }
 
-function getAllGrievances(url,func)
+function callback(url,func)
 {
     var xhttp = new XMLHttpRequest();
     
@@ -15,6 +15,34 @@ function getAllGrievances(url,func)
     };
     xhttp.open('GET',url);
     xhttp.send();
+}
+
+function setStats(xhttp){
+    data = JSON.parse(xhttp.responseText);
+    var status = ["completed","inprogress","unassigned","redirected"];
+    var tot = 0; 
+    for(s of status){
+        p = document.getElementById(s);
+        p.innerHTML = 0;
+        pb = document.getElementById(s + "_stats");
+        var percentage = 0;
+        pb.style = "width:" + percentage + "%";
+        pb.innerHTML = percentage + "%";
+    }
+
+    for(s of data)
+        tot += parseInt(s.count);
+
+    for(s of data)
+    {
+        var status = s.status.toLowerCase();
+        p = document.getElementById(status);
+        p.innerHTML=s.count;
+        pb=document.getElementById(status+"_stats");
+        var percentage=((s.count/tot)*100).toFixed(2);
+        pb.style="width:"+percentage+"%";
+        pb.innerHTML=percentage+"%";
+    }
 }
 
 function loadtable(xhttp)
@@ -32,7 +60,7 @@ function loadtable(xhttp)
     {
         var hiddendiv=document.getElementById("nogriev");
         hiddendiv.style.visibility="visible";
-        hiddendiv.innerHTML = "No Grievances Available! ";
+        hiddendiv.innerHTML = "No Grievances";
     }
     else
     {

@@ -68,6 +68,32 @@
                         </div>
                     </div>
                     <br>
+                    <button class="btn btn-success" id="getStatsBtn" style="display: none;" onclick="showStats()" >Get Stats</button><br><br>
+                    <div class="row">
+                        <div class="col-sm-3">
+                          <div class="card" style="display: none;" >
+                            <div class="card-body">
+                              <h5 class="card-title text-center">Completed</h5>
+                              <p class="card-text text-center" id="completed_count"></p>
+                              <div class="progress">
+                                <div class="progress-bar bg-success progress-bar-striped" id="completed_percent"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="card" style="display: none;">
+                              <div class="card-body">
+                                <h5 class="card-title text-center">In Progress</h5>
+                                <p class="card-text text-center" id="inprogress_count"></p>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info progress-bar-striped" id="inprogress_percent"></div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
                     <div id="grievances" class="table-responsive">
                         <h3 id = "nogrievance" style="display: none;">No Grievances</h3>
                         <table id = "customtable" class="table table-striped" style="width: 100%"></table>

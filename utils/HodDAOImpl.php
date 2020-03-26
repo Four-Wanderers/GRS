@@ -176,5 +176,25 @@
             else
                 return [];
         }
+        function getStats(int $dept_id, string $staff_id='all'):array
+        {
+            //if staff_id = 'all' then every grievance under the given dept_id is considered for making the stats
+            $conn = (new DBConnection())->getConn();
+            $staff_query = ($staff_id === 'all')?"":"and g.handler_id = $staff_id";
+            
+            $make_status = "(select if(g.ticket_id in (select r.ticket_id from ".DBConstants::$REDIRECT_LOG_TABLE." r),'redirected',
+            if(g.time_assigned is null,'unassigned',if(g.time_completed is null,'inprogress','completed'))) 'status' 
+            from ".DBConstants::$GTICKET_TABLE." g where g.dept_id = $dept_id $staff_query)";
+            
+            $sql = "select count(*) 'count', t.status from $make_status t group by t.status";
+            $result =  $conn->query($sql);
+            $conn->close();
+            if($result->num_rows > 0)
+            {
+                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            else  
+                return [];
+        }
     }
 ?>
